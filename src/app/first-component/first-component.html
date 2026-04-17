@@ -1,0 +1,75 @@
+<div class="todo-container">
+
+    <h2>Add Task</h2>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="task" placeholder="Enter task name"  class="input-box"/>
+    <small class="error" *ngIf="taskError">
+      Please enter task name
+    </small>
+     <select [(ngModel)]="priority" class="dropdown">
+      <option value="">Select Priority</option>
+      <option value="Critical">Critical</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+    <small class="error" *ngIf="prirorityError">
+      Please select priority
+    </small>
+    <button (click)="addTask()" class="add-btn"> Add Task</button>
+    </div>
+</div>
+
+<hr />
+
+<h3 style="text-align: center;">Task List</h3>
+<table border="1" width="100%" *ngIf="tasks.length > 0" >
+    <thead>
+        <tr>
+            <th>TaskId</th>
+            <th>Task Name</th>
+            <th>Priority</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let t of tasks">
+            <td>{{t.id}}</td>
+            <td>{{t.name}}</td>
+           <td [ngClass]="t.status.toLowerCase()">
+       {{t.status}}
+    </td>
+    <td>
+       <button (click)="edittask(t)">Edit</button> 
+       <button (click)="Deletetask(t.id)">Delete</button>
+    </td>
+        </tr>
+    </tbody>
+</table>
+
+<!--Modal popup--->
+<div class="modal"  *ngIf="showmodal">
+    <div class="modal-content">
+        <h3>Edit Task</h3>
+       <input 
+      type="text" 
+      [(ngModel)]="editTaskData.name" 
+      class="input-box"
+    />
+
+    <select [(ngModel)]="editTaskData.status" class="dropdown">
+      <option value="Critical">Critical</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+
+    <div class="modal-actions">
+      <button (click)="updateTask()">Save</button>
+      <button (click)="closeModal()">Cancel</button>
+    </div>
+
+    </div>
+</div>
