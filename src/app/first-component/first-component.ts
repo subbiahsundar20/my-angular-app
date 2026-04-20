@@ -19,6 +19,8 @@ export class FirstComponent {
    showmodal:boolean = false;
    editTaskData: any = null
    tasks: any[]=[];
+   searchtext: string='';
+   filteredTasks: any[] = [];
  
  addTask(){
 
@@ -42,6 +44,7 @@ export class FirstComponent {
    };
 
     this.tasks.push(newTask);
+    this.filteredTasks = [...this.tasks];
     this.task = '';
     this.priority = '';
  }
@@ -58,6 +61,8 @@ export class FirstComponent {
   Deletetask(id:number){
 
     this.tasks = this.tasks.filter(t=>t.id !==id);
+    this.filteredTasks = [...this.tasks];
+    this.filteredTasks = [...this.tasks];
     if(this.editTaskData.id){
       this.showmodal=false;
     }
@@ -69,6 +74,7 @@ export class FirstComponent {
     //console.log("index",index);
     if(index !== -1){
       this.tasks[index]= this.editTaskData;
+      this.filteredTasks = [...this.tasks];
     }
     this.closeModal();
   }
@@ -76,6 +82,19 @@ export class FirstComponent {
   closeModal(){
     this.showmodal = false;
     this.editTaskData = null;
+  }
+
+  searchtask(){
+  
+    if(!this.searchtext){
+      this.filteredTasks = [...this.tasks];
+      return;
+    }
+
+     this.filteredTasks = this.tasks.filter(t =>
+    t.name.toLowerCase().includes(this.searchtext.toLowerCase())
+  );
+
   }
 
 }

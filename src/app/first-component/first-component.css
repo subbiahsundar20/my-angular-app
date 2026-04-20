@@ -201,3 +201,65 @@ td:last-child {
   padding: 8px 12px;
   cursor: pointer;
 }
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Edit Button */
+.edit-btn {
+  background: linear-gradient(135deg, #42a5f5, #478ed1);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.edit-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(66,165,245,0.4);
+}
+
+/* Delete Button */
+.delete-btn {
+  background: linear-gradient(135deg, #ef5350, #d32f2f);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(239,83,80,0.4);
+}
+
+/*search bar */
+.table-header {
+  width: 85%;
+  margin: 20px auto 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-box {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 200px;
+  transition: 0.3s;
+}
+
+.search-box:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 6px rgba(102,126,234,0.3);
+}

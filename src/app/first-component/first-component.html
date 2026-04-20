@@ -21,8 +21,14 @@
 </div>
 
 <hr />
+<div class="table-header">
 
 <h3 style="text-align: center;">Task List</h3>
+
+<input type="text" [(ngModel)]="searchtext" (input)="searchtask()" class="input-box search-box" placeholder="search task..."/>
+
+</div>
+
 <table border="1" width="100%" *ngIf="tasks.length > 0" >
     <thead>
         <tr>
@@ -35,15 +41,17 @@
 
     <tbody>
 
-        <tr *ngFor="let t of tasks">
+        <tr *ngFor="let t of filteredTasks">
             <td>{{t.id}}</td>
             <td>{{t.name}}</td>
            <td [ngClass]="t.status.toLowerCase()">
        {{t.status}}
     </td>
     <td>
-       <button (click)="edittask(t)">Edit</button> 
-       <button (click)="Deletetask(t.id)">Delete</button>
+        <div class="action-buttons">
+       <button class="edit-btn"  (click)="edittask(t)">Edit</button> 
+       <button class="delete-btn" (click)="Deletetask(t.id)">Delete</button>
+      </div>
     </td>
         </tr>
     </tbody>
@@ -66,9 +74,9 @@
       <option value="Low">Low</option>
     </select>
 
-    <div class="modal-actions">
-      <button (click)="updateTask()">Save</button>
-      <button (click)="closeModal()">Cancel</button>
+    <div class="modal-actions action-buttons">
+      <button class="edit-btn" (click)="updateTask()">Save</button>
+      <button class="delete-btn" (click)="closeModal()">Cancel</button>
     </div>
 
     </div>
