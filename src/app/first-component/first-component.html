@@ -1,11 +1,14 @@
 <div class="todo-container">
 
-    <h2>Add Task</h2>
+    <h2 class="table-title">Add Task</h2>
     <div class="form-group">
+      <div class="form-control">
     <input type="text" [(ngModel)]="task" placeholder="Enter task name"  class="input-box"/>
     <small class="error" *ngIf="taskError">
       Please enter task name
     </small>
+    </div>
+     <div class="form-control">
      <select [(ngModel)]="priority" class="dropdown">
       <option value="">Select Priority</option>
       <option value="Critical">Critical</option>
@@ -18,6 +21,7 @@
     </small>
     <button (click)="addTask()" class="add-btn"> Add Task</button>
     </div>
+    </div>
 </div>
 
 <hr />
@@ -25,7 +29,16 @@
 
 <h3 style="text-align: center;">Task List</h3>
 
+<div class="search-wrapper">
 <input type="text" [(ngModel)]="searchtext" (input)="searchtask()" class="input-box search-box" placeholder="search task..."/>
+<mat-icon class="search-icon">search</mat-icon>
+ <mat-icon 
+    class="clear-icon" 
+    *ngIf="searchtext"
+    (click)="clearSearch()">
+    close
+  </mat-icon>
+</div>
 
 </div>
 
@@ -60,6 +73,8 @@
 <!--Modal popup--->
 <div class="modal"  *ngIf="showmodal">
     <div class="modal-content">
+          <!-- Close Icon -->
+  <mat-icon class="close-icon" (click)="closeModal()">close</mat-icon>
         <h3>Edit Task</h3>
        <input 
       type="text" 

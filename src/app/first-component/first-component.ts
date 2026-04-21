@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { CommonModule} from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-first-component',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatIconModule],
   templateUrl: './first-component.html',
   styleUrl: './first-component.css',
 })
@@ -96,5 +97,9 @@ export class FirstComponent {
   );
 
   }
+  clearSearch() {
+  this.searchtext = '';
+  this.filteredTasks = [...this.tasks];
+}
 
 }
